@@ -2,29 +2,29 @@
   <div id="app" class="main-container">
     <v-toolbar dark app color="primary">
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn v-for="item in toolbarItems" :key="item.link" :to="item.link"> 
-          {{item.title}}
-        </v-btn>
+        <v-btn v-for="item in toolbarItems" :key="item.link" :to="item.link">{{item.title}}</v-btn>
       </v-toolbar-items>
 
-      <v-menu class="hidden-md-and-up">
-        <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
-        <v-list>
-          <v-list-tile v-for="item in toolbarItems" :key="item.link">
-            <v-list-tile-content>
-              <v-btn flat :to="item.link">{{ item.title }}</v-btn>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"/>
 
       <v-spacer/>
       <v-btn icon to="/login">
         <v-icon>person</v-icon>
       </v-btn>
     </v-toolbar>
-    <div id="nav"></div>
 
+    <!-- DRAWER -->
+    <v-navigation-drawer v-model="drawer" absolute dark temporary>
+      <v-list>
+        <v-list-tile v-for="item in toolbarItems" :key="item.link">
+          <v-list-tile-content>
+            <v-btn flat :to="item.link">{{ item.title }}</v-btn>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <!-- ROUTER VIEW -->
     <router-view/>
 
     <v-footer height="auto" color="primary" style="position: absolute; bottom: 0; width: 100%">
@@ -42,6 +42,7 @@ import Component from "vue-class-component";
 
 @Component
 export default class App extends Vue {
+  drawer = false;
   toolbarItems = [
     { link: "/", title: "Home" },
     { link: "/about", title: "About" },
