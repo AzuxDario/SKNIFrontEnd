@@ -1,6 +1,6 @@
 import { CreatorModel } from '@/models/CreatorModel';
 import { ArticleTagsModel } from '@/models/ArticleTagsModel';
-
+/* tslint:disable */
 export class ArticleModel {
     public id!: number;
     public title!: string;

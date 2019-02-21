@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="section in sections" :key="section.title" style="border: 1px solid gray">
+    <div v-for='section in sections' :key='section.title' style='border: 1px solid gray'>
         <p>
             {{ section.name }}
         </p>
@@ -11,11 +11,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { SectionModel } from "@/models/SectionModel";
+<script lang='ts'>
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { SectionModel } from '@/models/SectionModel';
 @Component
 export default class SectionsList extends Vue {
-  @Prop() sections!: SectionModel[];
+  @Prop() public sections!: SectionModel[];
 }
 </script>

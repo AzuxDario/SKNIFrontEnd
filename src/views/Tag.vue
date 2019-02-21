@@ -1,38 +1,38 @@
 <template>
   <div>
     <strong>Artykuły dla tagu #{{$route.params.tag}}</strong>
-    <articles-list v-bind:articles="articles"></articles-list>
+    <articles-list v-bind:articles='articles'></articles-list>
     <v-pagination
-      v-model="pagination.currentPage"
-      :length="pagination.pageCount"
-      @input="paginationClicked"
+      v-model='pagination.currentPage'
+      :length='pagination.pageCount'
+      @input='paginationClicked'
     ></v-pagination>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue";
-import ArticlesList from "@/components/ArticlesList.vue";
-import { ArticlesService } from "@/services/ArticlesService";
-import { ArticleModel } from "@/models/ArticleModel";
-import { PaginationModel } from "@/models/PaginationModel";
-import { PaginationContainer } from "@/models/PaginationContainer";
+<script lang='ts'>
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import HelloWorld from '@/components/HelloWorld.vue';
+import ArticlesList from '@/components/ArticlesList.vue';
+import { ArticlesService } from '@/services/ArticlesService';
+import { ArticleModel } from '@/models/ArticleModel';
+import { PaginationModel } from '@/models/PaginationModel';
+import { PaginationContainer } from '@/models/PaginationContainer';
 
-@Component()
+@Component
 export default class Tag extends Vue {
   private articlesService!: ArticlesService;
   private pagination!: PaginationModel;
   private articles!: ArticleModel[];
 
-  beforeCreate() {
+  private beforeCreate() {
     this.articlesService = new ArticlesService();
     this.pagination = new PaginationModel(1, 3, 3);
   }
 
-  mounted() {
-    var pageNumber = +this.$route.params.page;
-    if (pageNumber == undefined || isNaN(pageNumber)) {
+  private mounted() {
+    let pageNumber = +this.$route.params.page;
+    if (pageNumber === undefined || isNaN(pageNumber)) {
       pageNumber = 1;
     }
 
@@ -40,12 +40,13 @@ export default class Tag extends Vue {
     this.paginationClicked(pageNumber);
   }
 
-  public paginationClicked(pageNumber: number) {
+  private paginationClicked(pageNumber: number) {
     this.articlesService
       .getArticlesWithTag(
         this.$route.params.tag,
         pageNumber,
-        this.pagination.itemsPerPage
+        this.pagination.itemsPerPage,
+        false,
       )
       .then((paginationContainer: PaginationContainer<ArticleModel>) => {
         this.articles = paginationContainer.results;
@@ -53,15 +54,15 @@ export default class Tag extends Vue {
       });
 
     this.$router.replace({
-      name: "tag",
-      params: { page: "" + pageNumber }
+      name: 'tag',
+      params: { page: '' + pageNumber },
     });
   }
 
-  public data() {
+  private data() {
     return {
       articles: this.articles,
-      pagination: this.pagination
+      pagination: this.pagination,
     };
   }
 }

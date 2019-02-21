@@ -1,6 +1,6 @@
 import { ProfileModel } from './ProfileModel';
 import { SectionModel } from './SectionModel';
-
+/* tslint:disable */
 export class ProjectModel {
     public id!: number;
     public title!: string;

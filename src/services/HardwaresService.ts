@@ -20,7 +20,7 @@ export class HardwaresService {
                 limit: pageSize,
             },
         })).data as PaginationContainer<HardwareModel>;
-    
+
         return data;
     }
 }

@@ -1,5 +1,5 @@
 import { CreatorModel } from '@/models/CreatorModel';
-
+/* tslint:disable */
 export class CommentModel {
     public id!: number;
     public text!: string;

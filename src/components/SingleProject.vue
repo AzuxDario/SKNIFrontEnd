@@ -1,5 +1,5 @@
 <template>
-  <div v-if="project != undefined">
+  <div v-if='project != undefined'>
     <p>ID projektu {{$route.params.id}}</p>
     <p>Nazwa: {{ project.title }}</p>
     <p>Opis: {{ project.text }}</p>
@@ -7,12 +7,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { ProjectModel } from "@/models/ProjectModel";
+<script lang='ts'>
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ProjectModel } from '@/models/ProjectModel';
 
 @Component
 export default class SingleProject extends Vue {
-  @Prop() project!: ProjectModel;
+  @Prop() public project!: ProjectModel;
 }
 </script>

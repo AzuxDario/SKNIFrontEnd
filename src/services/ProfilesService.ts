@@ -28,7 +28,7 @@ export class ProfilesService {
                 limit: pageSize,
             },
         })).data as PaginationContainer<ProfileModel>;
-    
+
         return data;
     }
 

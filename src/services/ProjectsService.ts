@@ -28,7 +28,6 @@ export class ProjectsService {
                 limit: pageSize,
             },
         })).data as PaginationContainer<ProjectModel>;
-    
         return data;
     }
 

@@ -42,23 +42,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-import Component from "vue-class-component";
+<script lang='ts'>
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
 @Component
 export default class App extends Vue {
-  navDrawer = false;
-  loginDrawer = false;
-
-  toolbarItems = [
-    { link: "/", title: "Home" },
-    { link: "/about", title: "About" },
-    { link: "/articles", title: "Articles" },
-    { link: "/sections", title: "Sekcje" },
-    { link: "/projects", title: "Projekty" },
-    { link: "/hardware", title: "Hardware" },
-    { link: "/profiles", title: "Profile" }
+  private toolbarItems = [
+    { link: '/', title: 'Home' },
+    { link: '/about', title: 'About' },
+    { link: '/articles', title: 'Articles' },
+    { link: '/sections', title: 'Sekcje' },
+    { link: '/projects', title: 'Projekty' },
+    { link: '/hardware', title: 'Hardware' },
+    { link: '/profiles', title: 'Profile' },
   ];
 }
 </script>
@@ -66,7 +63,7 @@ export default class App extends Vue {
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
