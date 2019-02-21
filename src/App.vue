@@ -1,21 +1,21 @@
 <template>
   <div id="app" class="main-container">
-    <v-toolbar dark app color="primary">
+    <v-toolbar dark color="primary">
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-for="item in toolbarItems" :key="item.link" :to="item.link">{{item.title}}</v-btn>
       </v-toolbar-items>
 
       <v-spacer/>
 
-      <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"/>
+      <v-toolbar-side-icon @click.stop="navDrawer = !navDrawer" class="hidden-md-and-up"/>
 
-      <v-btn icon to="/login">
+      <v-btn icon @click="loginDrawer = !loginDrawer">
         <v-icon>person</v-icon>
       </v-btn>
     </v-toolbar>
 
-    <!-- DRAWER -->
-    <v-navigation-drawer v-model="drawer" absolute dark temporary>
+    <!-- NAVIGATION DRAWER -->
+    <v-navigation-drawer v-model="navDrawer" absolute dark temporary>
       <v-list>
         <v-list-tile v-for="item in toolbarItems" :key="item.link">
           <v-list-tile-content>
@@ -23,6 +23,11 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
+    </v-navigation-drawer>
+
+        <!-- LOGIN DRAWER -->
+    <v-navigation-drawer v-model="loginDrawer" absolute dark right temporary>
+      <UserPanel></UserPanel>
     </v-navigation-drawer>
 
     <!-- ROUTER VIEW -->
@@ -43,7 +48,9 @@ import Component from "vue-class-component";
 
 @Component
 export default class App extends Vue {
-  drawer = false;
+  navDrawer = false;
+  loginDrawer = false;
+
   toolbarItems = [
     { link: "/", title: "Home" },
     { link: "/about", title: "About" },
