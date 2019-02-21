@@ -5,9 +5,10 @@
         <v-btn v-for="item in toolbarItems" :key="item.link" :to="item.link">{{item.title}}</v-btn>
       </v-toolbar-items>
 
+      <v-spacer/>
+
       <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"/>
 
-      <v-spacer/>
       <v-btn icon to="/login">
         <v-icon>person</v-icon>
       </v-btn>
