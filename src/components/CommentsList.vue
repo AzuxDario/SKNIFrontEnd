@@ -4,7 +4,7 @@
       v-for="comment in comments"
       :key="comment.id"
       style="border: 1px solid gray"
-    >[{{comment.creation_date}}]{{comment.user.username}} napisał: {{comment.text}}</div>
+    >[{{comment.creation_date | moment("DD-MM-YYYY")}} {{comment.creation_date | moment("HH:mm:SS")}}] {{comment.user.user.username}} napisał: {{comment.text}}</div>
   </div>
 </template>
 

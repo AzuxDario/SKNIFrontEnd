@@ -1,17 +1,11 @@
 <template>
   <div>
     <articles-list v-bind:articles="articles"></articles-list>
-    <paginate
-      v-if="pagination != undefined"
+    <v-pagination
       v-model="pagination.currentPage"
-      :page-count="pagination.pageCount"
-      :page-range="3"
-      :margin-pages="2"
-      :prev-text="'Poprzednia strona'"
-      :next-text="'Następna strona'"
-      :container-class="'paginationContainer'"
-      :click-handler="paginationClicked"
-    ></paginate>
+      :length="pagination.pageCount"
+      @input="paginationClicked"
+    ></v-pagination>
   </div>
 </template>
 
@@ -24,11 +18,7 @@ import { ArticleModel } from "@/models/ArticleModel";
 import { PaginationModel } from "@/models/PaginationModel";
 import { PaginationContainer } from "@/models/PaginationContainer";
 
-@Component({
-  components: {
-    HelloWorld
-  }
-})
+@Component()
 export default class Articles extends Vue {
   private articlesService!: ArticlesService;
   private pagination!: PaginationModel;
@@ -51,18 +41,16 @@ export default class Articles extends Vue {
 
   public paginationClicked(pageNumber: number) {
     this.articlesService
-      .getArticles(pageNumber, this.pagination.itemsPerPage)
+      .getArticles(pageNumber, this.pagination.itemsPerPage, false)
       .then((paginationContainer: PaginationContainer<ArticleModel>) => {
         this.articles = paginationContainer.results;
         this.pagination.itemCount = paginationContainer.count;
       });
 
-    if (pageNumber != 1) {
-      this.$router.replace({
-        name: "articles",
-        params: { page: "" + pageNumber }
-      });
-    }
+    this.$router.replace({
+      name: "articles",
+      params: { page: "" + pageNumber }
+    });
   }
 
   public data() {
@@ -75,16 +63,7 @@ export default class Articles extends Vue {
 </script>
 
 <style>
-.paginationContainer {
-  display: inline-block;
-}
-
-.paginationContainer > li {
-  display: inline-block;
-  border: 1px solid rgb(200, 200, 200);
-}
-
-.active {
-  font-weight: bold;
+.v-pagination .primary {
+  background-color: rgb(65, 65, 255) !important;
 }
 </style>

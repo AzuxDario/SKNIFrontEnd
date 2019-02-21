@@ -10,11 +10,8 @@ import HelloWorld from '@/components/HelloWorld.vue';
 import SectionsList from '@/components/SectionsList.vue';
 import { SectionsService } from '@/services/SectionsService';
 import { SectionModel } from '@/models/SectionModel';
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
+
+@Component()
 export default class Section extends Vue {
   private sectionsService!: SectionsService;
   private sections!: SectionModel[];

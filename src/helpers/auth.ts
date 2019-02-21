@@ -16,14 +16,11 @@ export async function login(username: string, password: string) {
 
 export function logout() {
     localStorage.removeItem(accessTokenName);
+    localStorage.removeItem(refreshTokenName);
 }
 
 export async function refreshToken() {
     const token = localStorage.getItem(refreshTokenName);
-
-    if (token == null) {
-        return;
-    }
 
     let response = await axios.post('http://localhost:8000/refresh-token/', { "refresh": token });
     if (response.status === 200) {
@@ -33,7 +30,26 @@ export async function refreshToken() {
     return response;
 }
 
-export function isLoggedIn(): boolean {
+export async function isLoggedIn(): Promise<boolean> {
+    let token = localStorage.getItem(accessTokenName);
+    if(token === null) {
+        return false;
+    }
+
+    const res = await axios.post('http://localhost:8000/verify-token/', {"token": token});
+    if(res.status === 200) {
+        return true;
+    }
+
+    const refresh = await refreshToken();
+    if(refresh.status === 200) {
+        return true;
+    }
+
+    return false;
+}
+
+export function tokenExists(): boolean {
     let token = localStorage.getItem(accessTokenName);
     return token !== null;
 }

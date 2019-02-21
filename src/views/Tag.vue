@@ -2,17 +2,11 @@
   <div>
     <strong>Artykuły dla tagu #{{$route.params.tag}}</strong>
     <articles-list v-bind:articles="articles"></articles-list>
-    <paginate
-      v-if="pagination != undefined"
+    <v-pagination
       v-model="pagination.currentPage"
-      :page-count="pagination.pageCount"
-      :page-range="3"
-      :margin-pages="2"
-      :prev-text="'Poprzednia strona'"
-      :next-text="'Następna strona'"
-      :container-class="'paginationContainer'"
-      :click-handler="paginationClicked"
-    ></paginate>
+      :length="pagination.pageCount"
+      @input="paginationClicked"
+    ></v-pagination>
   </div>
 </template>
 
@@ -25,11 +19,7 @@ import { ArticleModel } from "@/models/ArticleModel";
 import { PaginationModel } from "@/models/PaginationModel";
 import { PaginationContainer } from "@/models/PaginationContainer";
 
-@Component({
-  components: {
-    HelloWorld
-  }
-})
+@Component()
 export default class Tag extends Vue {
   private articlesService!: ArticlesService;
   private pagination!: PaginationModel;
@@ -62,12 +52,10 @@ export default class Tag extends Vue {
         this.pagination.itemCount = paginationContainer.count;
       });
 
-    if (pageNumber != 1) {
-      this.$router.replace({
-        name: "tag",
-        params: { page: "" + pageNumber }
-      });
-    }
+    this.$router.replace({
+      name: "tag",
+      params: { page: "" + pageNumber }
+    });
   }
 
   public data() {

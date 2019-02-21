@@ -4,6 +4,7 @@ import { ArticleTagsModel } from '@/models/ArticleTagsModel';
 export class ArticleModel {
     public id!: number;
     public title!: string;
+    public alias!: string;
     public text!: string;
 
     // tslint:disable-next-line:variable-name
@@ -17,4 +18,6 @@ export class ArticleModel {
 
     // tslint:disable-next-line:variable-name
     public comments_number!: number;
+
+    public readMore!: boolean;
 }

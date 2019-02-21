@@ -1,6 +1,6 @@
 <template>
   <div>
-    <hardwares-list v-bind:hardwares="hardwares"></hardwares-list>
+    <projects-list v-bind:projects="projects"></projects-list>
       <v-pagination
         v-model="pagination.currentPage"
         :length="pagination.pageCount"
@@ -12,20 +12,20 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue';
-import HardwaresList from '@/components/HardwaresList.vue';
-import { HardwaresService } from '@/services/HardwaresService';
-import { HardwareModel } from '@/models/HardwareModel';
+import ProjectsList from '@/components/ProjectsList.vue';
+import { ProjectsService } from '@/services/ProjectsService';
+import { ProjectModel } from '@/models/ProjectModel';
 import { PaginationModel } from "@/models/PaginationModel";
 import { PaginationContainer } from "@/models/PaginationContainer";
 
 @Component()
-export default class Hardware extends Vue {
-  private hardwaresService!: HardwaresService;
+export default class Projects extends Vue {
+  private projectsService!: ProjectsService;
   private pagination!: PaginationModel;
-  private hardwares!: HardwareModel[];
+  private projects!: ProjectModel[];
 
   beforeCreate() {
-    this.hardwaresService = new HardwaresService();
+    this.projectsService = new ProjectsService();
     this.pagination = new PaginationModel(1, 3, 3);
   }
 
@@ -40,21 +40,21 @@ export default class Hardware extends Vue {
   }
 
   public paginationClicked(pageNumber: number) {
-    this.hardwaresService
-      .getHardwareByPage(pageNumber, this.pagination.itemsPerPage)
-      .then((paginationContainer: PaginationContainer<HardwareModel>) => {
-        this.hardwares = paginationContainer.results;
+    this.projectsService
+      .getProjectsByPage(pageNumber, this.pagination.itemsPerPage)
+      .then((paginationContainer: PaginationContainer<ProjectModel>) => {
+        this.projects = paginationContainer.results;
         this.pagination.itemCount = paginationContainer.count;
       });
 
     this.$router.replace({
-      name: "hardware",
+      name: "projects",
       params: { page: "" + pageNumber }
     });
   }
 
   public data() {
-    return { hardwares: this.hardwares };
+    return { projects: this.projects };
   }
 }
 </script>
