@@ -19,9 +19,6 @@
               <v-card-actions>
                 <v-btn primary large block @click="loginUser()">Login</v-btn>
               </v-card-actions>
-              <v-card-actions>
-                <v-btn primary large block @click="goToRegister()">Register</v-btn>
-              </v-card-actions>
             </v-form>
           </v-card>
         </v-container>
@@ -52,15 +49,6 @@ export default class Login extends Vue {
     if (res.status === 200) {
       this.$forceUpdate();
     }
-  }
-
-  private isLogged(): boolean {
-    const a = isLoggedIn();
-    return a;
-  }
-
-  private goToRegister() {
-    this.$router.push("/register");
   }
 }
 </script>
