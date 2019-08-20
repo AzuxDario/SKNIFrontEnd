@@ -39,7 +39,7 @@
       </v-toolbar-items>
     </v-toolbar>
     <!--<div id='nav'></div>-->
-    <v-content style="padding-top: 0px">
+    <v-content>
       <v-container fluid style="padding: 0">
         <router-view/>
       </v-container>
@@ -63,7 +63,7 @@ export default class App extends Vue {
     { link: '/', title: 'Strona główna' },
     { link: '/about', title: 'O nas' },
     { link: '/articles', title: 'Artykuły' },
-    { link: '/sections', title: 'Sekcje' },
+    // { link: '/sections', title: 'Sekcje' },
     { link: '/projects', title: 'Projekty' },
     // { link: '/hardware', title: 'Hardware' },
     // { link: '/profiles', title: 'Profile' },

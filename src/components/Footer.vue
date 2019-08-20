@@ -1,6 +1,6 @@
 <template>
-    <v-footer height='auto' color='#EEF4F9' class="main-footer" app>
-         <!--<img class="img" :src="require('../assets/logo_color.png')" />-->
+    <v-footer height='auto' color='#EEF4F9' class="main-footer" app absolute>
+         <img class="img" :src="require('../assets/logo_color.png')" />
       <v-layout class="rights" justify-center row wrap>
           <strong> SKNI KOD</strong>  &nbsp;
         &copy; 2019
@@ -20,7 +20,7 @@ export default class Footer extends Vue {
 </script>
 <style lang="scss" scoped>
 .main-footer{
-    /*padding:5px 0 5px 0;
+    padding:5px 0 5px 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     justify-content: center;
@@ -31,6 +31,6 @@ export default class Footer extends Vue {
     }
     .img{
         width: 120px;
-    }*/
+    }
 }
 </style>
