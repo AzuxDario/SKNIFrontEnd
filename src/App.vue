@@ -15,7 +15,7 @@
     </v-navigation-drawer>
 
     <v-toolbar dark app>
-      <v-toolbar-side-icon class="hidden-sm-and-up" @click="sidebar = !sidebar"><v-icon>mdi-menu</v-icon></v-toolbar-side-icon>
+      <v-toolbar-side-icon class="hidden-md-and-up" @click="sidebar = !sidebar"><v-icon>mdi-menu</v-icon></v-toolbar-side-icon>
       <!--<v-menu left bottom class='hidden-md-and-up'>
         &lt;!&ndash;<v-icon slot='activator'>mdi-menu</v-icon>&ndash;&gt;
         <template v-slot:activator="{ on }">

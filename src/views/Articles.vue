@@ -1,6 +1,6 @@
 <template>
   <div>
-    <articles-list v-bind:articles='articles'></articles-list>
+    <articles-list v-bind:articles='articles' style="margin-left: 5px; margin-right: 5px"></articles-list>
     <v-pagination
       v-model='pagination.currentPage'
       :length='pagination.pageCount'
@@ -68,4 +68,8 @@ export default class Articles extends Vue {
 .v-pagination .primary {
   background-color: rgb(65, 65, 255) !important;
 }
+  .v-pagination{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 </style>

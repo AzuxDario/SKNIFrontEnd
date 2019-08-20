@@ -9,7 +9,7 @@
             <div class='text-xs-left info'>
               <div><v-icon class='icon'>mdi-calendar-today</v-icon><p>{{article.creation_date | moment('DD-MM-YYYY')}}</p></div>
               <div><v-icon class='icon'>mdi-account</v-icon><p>{{article.creator.user.username}}</p></div>
-              <div><span class='tags' v-if='article.tags.length != 0'>
+              <div><span class='tags hidden-sm-and-down' v-if='article.tags.length != 0'>
                 <v-icon class='icon'>mdi-note</v-icon>
                 <p><span v-for='(articleTag, index) in article.tags' :key='articleTag.tag.name'>
                   <a v-bind:href="'/#/tag/'+ articleTag.tag.name">{{ '#' + articleTag.tag.name }}</a>
@@ -90,6 +90,7 @@ export default class SingleArticle extends Vue {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: rgba(0,0,0,0)!important;
     div{
       display: flex;
       flex-direction: row;
