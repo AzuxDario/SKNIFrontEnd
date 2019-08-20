@@ -1,17 +1,9 @@
 <template>
   <div class='home'>
     <v-card>
-    <v-img :src="require('../assets/strona_bg.png')" class="hidden-sm-and-down" :asspect-ratio="3.55">
-      <v-container fluid>
-        <v-layout>
-          <v-flex xs12 align-end flexbox>
-            <v-img :src="require('../assets/logo_color.png')":width="'30%'" style="margin-left: 10vw; margin-top: 5vh"></v-img>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-img>
+      <v-img :src="require('../assets/strona_bg.png')" class="hidden-sm-and-down" :asspect-ratio="3.55"></v-img>
     </v-card>
-    <div class="hidden-md-and-up background" style="margin-top: -10px">
+    <div class="hidden-md-and-up background">
       <v-img :src="require('../assets/logo_color.png')"></v-img>
     </div>
     <HomeSectionList v-bind:sections="sections"></HomeSectionList>

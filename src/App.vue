@@ -1,8 +1,23 @@
 <template>
-  <div id='app' class='main-container'>
-
-    <v-toolbar dark app color='primary'>
-      <v-toolbar-items class='hidden-sm-and-down'>
+  <v-app id='app' class='main-container'>
+    <v-app-bar dark app>
+      <v-menu left bottom>
+        <!--<v-icon slot='activator'>mdi-menu</v-icon>-->
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on">
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-tile v-for='item in toolbarItems' :key='item.link'>
+            <v-list-tile-content>
+              <v-btn flat :to='item.link'>{{ item.title }}</v-btn>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+      <v-spacer></v-spacer>
+      <!--<v-toolbar-items class='hidden-sm-and-down'>
         <v-btn v-for='item in toolbarItems' :key='item.link' :to='item.link'>
           {{item.title}}
         </v-btn>
@@ -17,19 +32,16 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
-      </v-menu>
-
-      <v-spacer/>
-      <!--<v-btn icon to='/login'>
-        <v-icon>mdi-account</v-icon>
-      </v-btn>-->
-    </v-toolbar>
-    <div id='nav'></div>
+      </v-menu>-->
+    </v-app-bar>
+    <!--<div id='nav'></div>-->
     <v-content style="padding-top: 0px">
-      <router-view/>
+      <v-container fluid style="padding: 0">
+        <router-view/>
+      </v-container>
     </v-content>
     <Footer/>
-  </div>
+  </v-app>
 </template>
 
 <script lang='ts'>
@@ -90,11 +102,11 @@ body {
   position: relative;
 }
 .main-container {
-  min-height: 100vh; /* will cover the 100% of viewport */
+/*  min-height: 100vh; !* will cover the 100% of viewport *!
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 100px; /* height of your footer */
+  padding-bottom: 100px; !* height of your footer *!*/
 }
 
 .section-title{

@@ -4,7 +4,7 @@
             <v-img
                     class="white--text"
                     height="300px"
-                    :src="article.gallery ? (article.gallery[0] ? article.gallery[0].image : require('../assets/strona_bg.png')) : require('../assets/strona_bg.png')"
+                    :src="article.gallery ? (article.gallery[0] ? article.gallery[0].image : require('../assets/strona_bg_bez_logo.png')) : require('../assets/strona_bg_bez_logo.png')"
             >
                 <div style="height: 100%; width: 100%; display: flex; flex-direction: column">
                     <v-container style="flex: 1 100%">
