@@ -69,9 +69,9 @@ export default class App extends Vue {
     // { link: '/profiles', title: 'Profile' },
   ];
 
-  public data(){
+  public data() {
       return {sidebar: false};
-  };
+  }
 }
 </script>
 
