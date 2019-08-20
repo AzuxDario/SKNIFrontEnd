@@ -1,10 +1,25 @@
 <template>
   <v-app id='app' class='main-container'>
-    <v-app-bar dark app>
-      <v-menu left bottom>
-        <!--<v-icon slot='activator'>mdi-menu</v-icon>-->
+    <v-navigation-drawer app v-model="sidebar" width="150">
+      <v-list dense class="pt-0">
+        <v-list-tile
+                v-for="item in toolbarItems"
+                :key="item.link"
+                :to='item.link'
+        >
+          <v-list-tile-content :to='item.link'>
+            <v-list-tile-title :to='item.link'>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-toolbar dark app>
+      <v-toolbar-side-icon class="hidden-sm-and-up" @click="sidebar = !sidebar"><v-icon>mdi-menu</v-icon></v-toolbar-side-icon>
+      <!--<v-menu left bottom class='hidden-md-and-up'>
+        &lt;!&ndash;<v-icon slot='activator'>mdi-menu</v-icon>&ndash;&gt;
         <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on">
+          <v-btn icon v-on="on" class="hidden-md-and-up">
             <v-icon>mdi-menu</v-icon>
           </v-btn>
         </template>
@@ -15,25 +30,14 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
-      </v-menu>
-      <v-spacer></v-spacer>
-      <!--<v-toolbar-items class='hidden-sm-and-down'>
+      </v-menu>-->
+
+      <v-toolbar-items class='hidden-sm-and-down'>
         <v-btn v-for='item in toolbarItems' :key='item.link' :to='item.link'>
           {{item.title}}
         </v-btn>
       </v-toolbar-items>
-
-      <v-menu class='hidden-md-and-up' fixed>
-        <v-icon slot='activator'>mdi-menu</v-icon>
-        <v-list>
-          <v-list-tile v-for='item in toolbarItems' :key='item.link'>
-            <v-list-tile-content>
-              <v-btn flat :to='item.link'>{{ item.title }}</v-btn>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-menu>-->
-    </v-app-bar>
+    </v-toolbar>
     <!--<div id='nav'></div>-->
     <v-content style="padding-top: 0px">
       <v-container fluid style="padding: 0">
@@ -64,6 +68,10 @@ export default class App extends Vue {
     // { link: '/hardware', title: 'Hardware' },
     // { link: '/profiles', title: 'Profile' },
   ];
+
+  public data(){
+      return {sidebar: false};
+  };
 }
 </script>
 
