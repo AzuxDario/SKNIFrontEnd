@@ -1,5 +1,6 @@
 <template>
   <div id='app' class='main-container'>
+
     <v-toolbar dark app color='primary'>
       <v-toolbar-items class='hidden-sm-and-down'>
         <v-btn v-for='item in toolbarItems' :key='item.link' :to='item.link'>
@@ -7,7 +8,7 @@
         </v-btn>
       </v-toolbar-items>
 
-      <v-menu class='hidden-md-and-up'>
+      <v-menu class='hidden-md-and-up' fixed>
         <v-icon slot='activator'>mdi-menu</v-icon>
         <v-list>
           <v-list-tile v-for='item in toolbarItems' :key='item.link'>
@@ -24,17 +25,23 @@
       </v-btn>-->
     </v-toolbar>
     <div id='nav'></div>
-
-    <router-view/>
-    <footer-main/>
+    <v-content style="padding-top: 0px">
+      <router-view/>
+    </v-content>
+    <Footer/>
   </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import Footer from './components/Footer.vue';
 
-@Component
+@Component({
+    components: {
+        Footer,
+    },
+})
 export default class App extends Vue {
   private toolbarItems = [
     { link: '/', title: 'Strona główna' },

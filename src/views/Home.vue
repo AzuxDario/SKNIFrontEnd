@@ -14,8 +14,8 @@
     <div class="hidden-md-and-up background" style="margin-top: -10px">
       <v-img :src="require('../assets/logo_color.png')"></v-img>
     </div>
-    <home-section-list v-bind:sections="sections"></home-section-list>
-    <home-article-list :articles="articles"></home-article-list>
+    <HomeSectionList v-bind:sections="sections"></HomeSectionList>
+    <HomeArticleList :articles="articles"></HomeArticleList>
   </div>
 </template>
 
@@ -26,8 +26,13 @@ import { SectionsService } from '@/services/SectionsService';
 import { SectionModel } from '@/models/SectionModel';
 import {ArticleModel} from '../models/ArticleModel';
 import {ArticlesService} from '../services/ArticlesService';
-
-@Component
+import HomeArticleList from '../components/homePageComponents/HomeArticleList.vue';
+import HomeSectionList from '../components/homePageComponents/HomeSectionList.vue';
+@Component({
+    components: {
+        HomeArticleList, HomeSectionList,
+    },
+})
 export default class Home extends Vue {
     private sectionsService!: SectionsService;
     private articleService!: ArticlesService;

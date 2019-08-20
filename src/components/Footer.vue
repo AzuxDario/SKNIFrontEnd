@@ -1,29 +1,20 @@
 <template>
-    <v-footer height='auto' color='#EEF4F9' class="main-footer" style='position: absolute; bottom: 0; width: 100%'>
-         <img class="img" src="http://localhost:8081/img/logo_color.d4be6244.png" />
+    <v-footer height='auto' color='#EEF4F9' class="main-footer" app style="position: absolute">
+         <img class="img" :src="require('../assets/logo_color.png')" />
       <v-layout class="rights" justify-center row wrap>
           <strong> SKNI KOD</strong>  &nbsp;
-        &copy; 2019 
+        &copy; 2019
       </v-layout>
-      <v-layout>
-          <v-btn  flat small color="#64b5f6" class="font-weight-bold" >
-              strona główna
-          </v-btn>
-          <v-btn  flat small color="#64b5f6" class="font-weight-bold">
-              o nas
-          </v-btn>
-          <v-btn  flat small color="#64b5f6" class="font-weight-bold" >
-              kontakt
-          </v-btn>
-          <v-btn href="https://www.facebook.com/skni.kod/" small icon flat color="#64b5f6" class="font-weight-bold" >
-              <v-icon>mdi-facebook</v-icon>
-          </v-btn>
-      </v-layout>
+        <v-btn href="https://www.facebook.com/skni.kod/" small icon flat color="#64b5f6" class="font-weight-bold" >
+            <v-icon>mdi-facebook</v-icon>
+        </v-btn>
     </v-footer>
 </template>
 <script>
 import { Component, Prop, Vue } from 'vue-property-decorator';
+@Component
 export default class Footer extends Vue {
+
 }
 
 </script>
