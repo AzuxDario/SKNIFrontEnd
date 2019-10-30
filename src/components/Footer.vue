@@ -15,8 +15,11 @@
           <v-btn  flat small color="#64b5f6" class="font-weight-bold" >
               kontakt
           </v-btn>
-          <v-btn href="https://www.facebook.com/skni.kod/" small icon flat color="#64b5f6" class="font-weight-bold" >
+          <v-btn href="https://www.facebook.com/skni.kod/" target="_blank" small icon flat color="#64b5f6" class="font-weight-bold" >
               <v-icon>mdi-facebook</v-icon>
+          </v-btn>
+             <v-btn href="https://www.instagram.com/skni.kod/" target="_blank" small icon flat color="#64b5f6" class="font-weight-bold" >
+              <v-icon>mdi-instagram</v-icon>
           </v-btn>
       </v-layout>
     </v-footer>
