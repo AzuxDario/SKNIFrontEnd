@@ -1,26 +1,27 @@
 <template>
   <v-container>
-    <v-layout row class='text-xs-center'>
-      <v-flex xs4 class='grey lighten-4'>
+    <v-layout row justify-center class='text-xs-center'>
+      <v-flex xs4 class='lighten-4'>
         <v-container class='text-xs-center'>
           <v-card flat>
             <v-card-title primary-title>
-              <h4>Login</h4>
+              <h1>Logowanie</h1>
             </v-card-title>
             <v-form>
-              <v-text-field prepend-icon='person' name='Username' label='Username' v-model='login'></v-text-field>
+              <v-text-field prepend-icon='mdi-account' name='Username' label='Username' v-model='login'></v-text-field>
               <v-text-field
-                prepend-icon='lock'
+                :rules="rules"
+                prepend-icon='mdi-lock'
                 name='Password'
                 label='Password'
                 type='password'
                 v-model='password'
               ></v-text-field>
               <v-card-actions>
-                <v-btn primary large block @click='loginUser()'>Login</v-btn>
+                <v-btn primary color="#64b5f6" :loading="loading" large block @click='loginUser()'>Zaloguj</v-btn>
               </v-card-actions>
               <v-card-actions>
-                <v-btn primary large block @click='goToRegister()'>Register</v-btn>
+                <v-btn primary block @click='goToRegister()'>Rejestracja</v-btn>
               </v-card-actions>
             </v-form>
           </v-card>
@@ -42,12 +43,30 @@ import Axios from 'axios';
 export default class Login extends Vue {
   private login: string = '';
   private password: string = '';
+  private loading!: boolean;
+
+  private data() {
+    return {
+      loading: this.loading,
+      rules: [
+        (v: string) => !!v || 'Pole jest wymagane'
+      ]
+    };
+  }
 
   private async loginUser() {
-    const res = await login(this.login, this.password);
-    if (res.status === 200) {
+    this.loading = true;
+    try {
+      const res = await login(this.login, this.password);
       this.$forceUpdate();
+    } catch (error) {
+      // TODO: Show error message
     }
+    this.loading = false;
+  }
+
+  private async goToRegister() {
+    this.$router.push('register');
   }
 }
 </script>
