@@ -31,16 +31,16 @@
         <div class="inputs">
        <v-text-field
             label="Imię"
-          ></v-text-field>
+          >{{profile.user.username}}</v-text-field>
            <v-text-field
             label="Nazwisko"
-          ></v-text-field>
+          >{{profile.user.last_name}}</v-text-field>
            <v-text-field
             label="Nazwa"
-          ></v-text-field>
+          > {{ profile.user.first_name }}</v-text-field>
            <v-text-field
             label="Email"
-          ></v-text-field>
+          >{{profile.user.email}}</v-text-field>
         
 </div>
         <v-card-actions>
@@ -69,7 +69,7 @@ export default class SingleProfile extends Vue {
   @Prop() public profile!: ProfileModel;
   data(){
     return{
-      dialog: false
+      dialog: false,
     }
   }
 }
