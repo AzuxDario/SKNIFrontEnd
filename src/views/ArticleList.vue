@@ -72,7 +72,12 @@ export default class ArticleList extends Vue {
   }
 
   get role(): boolean {
-    return this.$store.getters.isAdministrator;
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.add_article'];
+    }
+    else{
+      return false
+    }
   }
 
   private beforeCreate() {

@@ -24,7 +24,7 @@
       fixed
       bottom
       right
-      v-if="auth"
+      v-if="role"
       :to="{ name: 'hardwareAdd' }"
       class="success"
     >
@@ -64,6 +64,13 @@ export default class HardwareList extends Vue {
     return this.$store.getters.isAuthenticated;
   }
 
+  get role(): boolean {
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.add_hardware'];
+    } else {
+      return false;
+    }
+  }
   private beforeCreate() {
     this.hardwareService = new HardwareService();
     this.pagination = new PaginationModel(1, 3, 6);

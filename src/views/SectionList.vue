@@ -30,7 +30,7 @@
       fixed
       bottom
       right
-      v-if="auth"
+      v-if="role"
       :to="{ name: 'sectionAdd' }"
       class="success"
     >
@@ -64,7 +64,13 @@ export default class SectionList extends Vue {
   get auth(): boolean {
     return this.$store.getters.isAuthenticated;
   }
-
+  get role(): boolean {
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.add_section'];
+    } else {
+      return false;
+    }
+  }
   public created() {
     this.projectsService.getAllProjects().then((res) => {
       this.$data.projects = res;
