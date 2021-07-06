@@ -41,14 +41,39 @@ const routes: RouteConfig[] = [
     name: 'articleEdit',
     component: () =>
       import(/* webpackChunkName: "ArticleEdit" */ './views/ArticleEdit.vue'),
-    beforeEnter: authGuard,
+    beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
+      if (store.getters.isAuthenticated) {
+        
+        if (store.getters.user.permissions['RESTApi.change_article']) {
+          next();
+        }
+        else {
+          next({ name: 'error403' });
+        }
+      }
+      else {
+        next({ name: 'error403' });
+      }
+    }
   },
   {
     path: '/article/add',
     name: 'articleAdd',
     component: () =>
       import(/* webpackChunkName: "ArticleEdit" */ './views/ArticleEdit.vue'),
-    beforeEnter: authGuard,
+    beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
+      if (store.getters.isAuthenticated) {
+        if (store.getters.user.permissions['RESTApi.add_article']) {
+          next();
+        }
+        else {
+          next({ name: 'error403' });
+        }
+      }
+      else {
+        next({ name: 'error403' });
+      }
+    }
   },
   {
     path: '/tag/:tag/:page?',
@@ -73,28 +98,76 @@ const routes: RouteConfig[] = [
     name: 'sectionEdit',
     component: () =>
       import(/* webpackChunkName: "SectionEdit" */ './views/SectionEdit.vue'),
-    beforeEnter: authGuard,
+    beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
+      if (store.getters.isAuthenticated) {
+        if (store.getters.user.permissions['RESTApi.change_section']) {
+          next();
+        }
+        else {
+          next({ name: 'error403' });
+        }
+      }
+      else {
+        next({ name: 'error403' });
+      }
+    }
   },
   {
     path: '/section/add',
     name: 'sectionAdd',
     component: () =>
       import(/* webpackChunkName: "SectionEdit" */ './views/SectionEdit.vue'),
-    beforeEnter: authGuard,
+    beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
+      if (store.getters.isAuthenticated) {
+        if (store.getters.user.permissions['RESTApi.add_section']) {
+          next();
+        }
+        else {
+          next({ name: 'error403' });
+        }
+      }
+      else {
+        next({ name: 'error403' });
+      }
+    }
   },
   {
     path: '/hardware/edit/:id?',
     name: 'hardwareEdit',
     component: () =>
       import(/* webpackChunkName: "HardwareEdit" */ './views/HardwareEdit.vue'),
-    beforeEnter: authGuard,
+    beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
+      if (store.getters.isAuthenticated) {
+        if (store.getters.user.permissions['RESTApi.change_hardware']) {
+          next();
+        }
+        else {
+          next({ name: 'error403' });
+        }
+      }
+      else {
+        next({ name: 'error403' });
+      }
+    }
   },
   {
     path: '/hardware/add',
     name: 'hardwareAdd',
     component: () =>
       import(/* webpackChunkName: "HardwareEdit" */ './views/HardwareEdit.vue'),
-    beforeEnter: authGuard,
+    beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
+      if (store.getters.isAuthenticated) {
+        if (store.getters.user.permissions['RESTApi.add_hardware']) {
+          next();
+        }
+        else {
+          next({ name: 'error403' });
+        }
+      }
+      else {
+        next({ name: 'error403' });
+      }
+    }
   },
   {
     path: '/hardware/:page?',
@@ -108,6 +181,7 @@ const routes: RouteConfig[] = [
     name: 'hardware',
     component: () =>
       import(/* webpackChunkName: "Hardware" */ './views/Hardware.vue'),
+    beforeEnter: authGuard,
   },
   {
     path: '/login',
@@ -168,14 +242,38 @@ const routes: RouteConfig[] = [
     name: 'editProject',
     component: () =>
       import(/* webpackChunkName: "ProjectEdit" */ './views/ProjectEdit.vue'),
-    beforeEnter: authGuard,
+      beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
+        if (store.getters.isAuthenticated) {
+          if (store.getters.user.permissions['RESTApi.change_project']) {
+            next();
+          }
+          else {
+            next({ name: 'error403' });
+          }
+        }
+        else {
+          next({ name: 'error403' });
+        }
+      }
   },
   {
     path: '/project/add',
     name: 'addProject',
     component: () =>
       import(/* webpackChunkName: "ProjectEdit" */ './views/ProjectEdit.vue'),
-    beforeEnter: authGuard,
+      beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
+        if (store.getters.isAuthenticated) {
+          if (store.getters.user.permissions['RESTApi.add_project']) {
+            next();
+          }
+          else {
+            next({ name: 'error403' });
+          }
+        }
+        else {
+          next({ name: 'error403' });
+        }
+      }
   },
   {
     path: '/project/:id',
