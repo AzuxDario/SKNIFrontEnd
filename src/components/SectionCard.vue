@@ -35,7 +35,7 @@
                     large
                     :color="hover ? 'grey lighten-1' : ''"
                     style="cursor: pointer"
-                    :to='{ name: "project", params: { id: project.id } }'
+                    :to="{ name: 'project', params: { id: project.id } }"
                   >
                     <v-icon left>mdi-file-cog</v-icon>
                     <span>{{ project.title }}</span>
@@ -54,7 +54,7 @@
           :to="{ name: 'section', params: { id: section.id } }"
           >Zobacz więcej</v-btn-cap
         >
-        <v-speed-dial direction="top" v-if="auth" v-model="fab" class="ml-2">
+        <v-speed-dial direction="top" v-if="role" v-model="fab" class="ml-2">
           <template v-slot:activator>
             <v-btn-cap
               x-small
@@ -107,6 +107,14 @@ export default class SectionCard extends Vue {
 
   get auth(): boolean {
     return this.$store.getters.isAuthenticated;
+  }
+
+  get role(): boolean {
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.change_section'];
+    } else {
+      return false;
+    }
   }
 
   private removeMarkdown(text: string) {

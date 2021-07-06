@@ -122,7 +122,12 @@ export default class Project extends Vue {
     return this.$store.getters.isAuthenticated;
   }
   get role(): boolean {
-    return this.$store.getters.isAdministrator;
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.change_project'];
+    }
+    else{
+      return false
+    }
   }
   get dialogText() {
     return 'Czy na pewno chcesz usunąć artykuł "' + this.project.title + '"?';

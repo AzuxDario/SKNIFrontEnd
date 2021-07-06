@@ -35,7 +35,10 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn-cap depressed color="warning" :to="{name:'project',params:{id:project.id}}"
+        <v-btn-cap
+          depressed
+          color="warning"
+          :to="{ name: 'project', params: { id: project.id } }"
           >Zobacz więcej</v-btn-cap
         >
         <v-speed-dial direction="top" v-if="role" v-model="fab" class="ml-2">
@@ -50,7 +53,12 @@
               <v-icon>mdi-cog</v-icon>
             </v-btn-cap>
           </template>
-          <v-btn-cap fab x-small color="orange" :to="{name:'editProject',params:{id:project.id}}">
+          <v-btn-cap
+            fab
+            x-small
+            color="orange"
+            :to="{ name: 'editProject', params: { id: project.id } }"
+          >
             <v-icon>mdi-pen</v-icon>
           </v-btn-cap>
           <v-btn-cap fab x-small color="error" @click="dialog = true">
@@ -80,7 +88,11 @@ export default class ProjectCard extends Vue {
   }
 
   get role(): boolean {
-    return this.$store.getters.isAdministrator;
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.change_project'];
+    } else {
+      return false;
+    }
   }
 
   private removeMarkdown(text: string) {

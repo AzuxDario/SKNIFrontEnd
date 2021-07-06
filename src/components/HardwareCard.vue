@@ -53,7 +53,7 @@
             :to="{ name: 'hardware', params: { id: hardware.id } }"
             >Zobacz więcej</v-btn
           >
-          <v-speed-dial direction="top" v-if="auth" v-model="fab" class="ml-2">
+          <v-speed-dial direction="top" v-if="role" v-model="fab" class="ml-2">
             <template v-slot:activator>
               <v-btn
                 x-small
@@ -101,6 +101,14 @@ export default class HardwareCard extends Vue {
 
   private beforeCreate() {
     this.hardwareService = new HardwareService();
+  }
+
+  get role(): boolean {
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.change_hardware'];
+    } else {
+      return false;
+    }
   }
 
   private color() {

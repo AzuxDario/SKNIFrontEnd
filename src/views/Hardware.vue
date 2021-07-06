@@ -4,7 +4,14 @@
       <v-col md="6">
         <v-card outlined class="ma-4" v-if="!loading && hardware">
           <v-card-title
-            class="primary text-h4 white--text font-weight-bold justify-center py-1"
+            class="
+              primary
+              text-h4
+              white--text
+              font-weight-bold
+              justify-center
+              py-1
+            "
             >{{ hardware.name }}</v-card-title
           >
           <v-card-text>
@@ -41,7 +48,7 @@
         ></v-skeleton-loader>
       </v-col>
     </v-row>
-    <v-speed-dial fixed right bottom direction="top" v-model="fab" v-if="auth">
+    <v-speed-dial fixed right bottom direction="top" v-model="fab" v-if="role">
       <template v-slot:activator>
         <v-btn
           fab
@@ -99,6 +106,14 @@ export default class Hardware extends Vue {
 
   get auth(): boolean {
     return this.$store.getters.isAuthenticated;
+  }
+
+  get role(): boolean {
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.add_hardware'];
+    } else {
+      return false;
+    }
   }
 
   get dialogText() {

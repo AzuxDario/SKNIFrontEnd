@@ -18,7 +18,12 @@
               <v-col class="pa-0">
                 <v-row justify="center" class="flex-column ma-0 fill-height">
                   <p
-                    class="white--text text-left text-h6 font-weight-black my-auto"
+                    class="
+                      white--text
+                      text-left text-h6
+                      font-weight-black
+                      my-auto
+                    "
                   >
                     {{ section.name }}
                   </p>
@@ -50,7 +55,7 @@
                         large
                         :color="hover ? 'grey lighten-1' : ''"
                         style="cursor: pointer"
-                        :to='{ name: "project", params: { id: project.id } }'
+                        :to="{ name: 'project', params: { id: project.id } }"
                       >
                         <v-icon left>mdi-file-cog</v-icon>
                         <span>{{ project.title }}</span>
@@ -139,7 +144,11 @@ export default class Section extends Vue {
     return this.$store.getters.isAuthenticated;
   }
   get role(): boolean {
-    return this.$store.getters.isAdministrator;
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.change_section'];
+    } else {
+      return false;
+    }
   }
   get dialogText() {
     return (

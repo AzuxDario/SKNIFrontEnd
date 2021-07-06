@@ -97,7 +97,12 @@ export default class ArticleCard extends Vue {
   }
 
   get role(): boolean {
-    return this.$store.getters.isAdministrator;
+    if (this.auth) {
+      return this.$store.getters.user.permissions['RESTApi.change_article'];
+    }
+    else{
+      return false
+    }
   }
 
   private removeMarkdown(text: string) {
